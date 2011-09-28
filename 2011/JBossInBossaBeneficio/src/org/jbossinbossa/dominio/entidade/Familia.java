@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,7 +21,8 @@ public class Familia implements Serializable {
 	@Id
 	@GeneratedValue(generator="familia_seq")
 	private Long id;
-
+	
+	
 	@OneToMany(mappedBy = "familia", cascade=CascadeType.PERSIST)
 	private List<Pessoa> membros = new ArrayList<Pessoa>();
 	
@@ -48,6 +50,8 @@ public class Familia implements Serializable {
 		}
 		return rendaTotal / membros.size();
 	}
+	
+	
 	
 	@Override
 	public String toString() {
