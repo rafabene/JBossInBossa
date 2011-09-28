@@ -5,15 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import org.jboss.seam.annotations.Name;
+
 @Entity
 @SequenceGenerator(name="familia_seq", sequenceName="familia_sequence")
+@Name("familia")
 public class Familia implements Serializable {
 
 	private static final long serialVersionUID = 1L;

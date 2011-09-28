@@ -13,10 +13,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.validator.NotNull;
+import org.jboss.seam.annotations.Name;
 
 
 @Entity
 @SequenceGenerator(name="pessoa_seq", sequenceName="pessoa_sequence")
+@Name("pessoa")
 public class Pessoa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
