@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources>
+   
+   <local-tx-datasource>
+      <jndi-name>apresentacao_brmsDatasource</jndi-name>
+      <use-java-context>true</use-java-context>
+      <connection-url>jdbc:postgresql://localhost:5432/bolsaFamilia</connection-url>
+      <driver-class>org.postgresql.Driver</driver-class>
+      <user-name>postgres</user-name>
+      <password>postgres</password>
+   </local-tx-datasource>
+    
+</datasources>
