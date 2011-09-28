@@ -17,6 +17,9 @@ import javax.persistence.SequenceGenerator;
 public class Familia implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+
+	
 
 	@Id
 	@GeneratedValue(generator="familia_seq")
