@@ -1,0 +1,37 @@
+package bolsaFamilia
+
+import org.jbossinbossa.dominio.entidade.Pessoa
+import org.jbossinbossa.dominio.entidade.Familia
+import java.lang.Integer
+
+global Beneficio $beneficio
+
+declare Beneficio
+	valorBeneficio: double
+end
+
+function Integer teste(){
+	 return 5;
+}
+
+rule "Benefício Básico"
+	dialect "mvel"
+	when
+		Familia( rendaPercapta <= 70 )
+	then
+		$beneficio.setValorBeneficio(  $beneficio.getValorBeneficio() + 68 );
+end
+
+
+rule "Benefício Variável"
+	dialect "mvel"
+	when
+		$f : Familia( rendaPercapta > "70" && rendaPercapta <= "140" )
+		$qtdCriancas : Long( ) from accumulate ( $pessoa: Pessoa( idade <= 15 ) from $f.membros
+,
+			count($pessoa)
+) 
+	then
+		$beneficio.setValorBeneficio(  $beneficio.getValorBeneficio() + ( $qtdCriancas * 22 ) );
+end
+
