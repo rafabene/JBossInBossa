@@ -14,7 +14,7 @@ import org.jbossinbossa.dominio.entidade.Familia;
 @Scope(ScopeType.CONVERSATION)
 public class FamiliaAction {
 	
-	@In
+	@In(create=true)
 	private Familia familia;
 	
 	@In
@@ -25,8 +25,9 @@ public class FamiliaAction {
 		return familiaDao.findByAll();
 	}
 	
-	public void detail(Long id) {
+	public String detail(Long id) {
 		this.familia = familiaDao.findById(id);
+		return "detailFamiliaList";
 	}
 
 }

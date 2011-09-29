@@ -14,15 +14,15 @@ import org.jbossinbossa.dominio.entidade.Familia;
 public class FamiliaDAO {
 	
 	@In
-	private EntityManager entitymanager;
+	private EntityManager entityManager;
 	
 	
 	public List<Familia> findByAll() {
-		return entitymanager.createQuery(" from Familia").getResultList();
+		return entityManager.createQuery(" from Familia").getResultList();
 	}
 	
 	public Familia findById(Long id) {
-		return entitymanager.find(Familia.class, id);
+		return entityManager.find(Familia.class, id);
 	}
 
 }

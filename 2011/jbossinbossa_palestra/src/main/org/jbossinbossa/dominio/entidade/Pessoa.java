@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -28,15 +29,19 @@ public class Pessoa implements Serializable {
 	private Long id;
 
 	@NotNull
+	@Column(name="nome")
 	private String nome;
 
 	@NotNull
+	@Column(name="renda")
 	private double renda;
 	
 	@NotNull
+	@Column(name="frequentaescola")
 	private boolean frequentaEscola;
 
 	@Temporal(TemporalType.DATE)
+	@Column(name="dataNascimento")
 	private Date dataNascimento;
 	
 	@ManyToOne
@@ -79,7 +84,7 @@ public class Pessoa implements Serializable {
 		return id;
 	}
 	
-	public boolean isFrequentaEscola() {
+	public boolean getFrequentaEscola() {
 		return frequentaEscola;
 	}
 	
