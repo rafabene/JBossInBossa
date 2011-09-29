@@ -2,7 +2,7 @@
 <datasources>
    
    <local-tx-datasource>
-      <jndi-name>apresentacao_brmsDatasource</jndi-name>
+      <jndi-name>jbossinBossa_palestraDatasource</jndi-name>
       <use-java-context>true</use-java-context>
       <connection-url>jdbc:postgresql://localhost:5432/bolsaFamilia</connection-url>
       <driver-class>org.postgresql.Driver</driver-class>
