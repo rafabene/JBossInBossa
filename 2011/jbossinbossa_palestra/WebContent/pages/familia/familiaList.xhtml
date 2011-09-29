@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      template="/layout/template.xhtml">
+      
+      <ui:define name="body">
+       <h:form id="noticiaForm">
+    
+       		<rich:panel>
+		       <p align="center" class="titulo" style="color:#228C96;">Familia</p>
+		       <rich:dataTable width="500px" id="familiaList" rows="10" align="center" columnClasses="col"
+        		    value="#{familiaAction.findByAll()}" var="familia">
+            	     <f:facet name="header">
+                       <rich:columnGroup>
+                            <rich:column>
+                                 <h:outputText value="Código" />
+                            </rich:column>
+                            <rich:column>
+                                 <h:outputText value="Renda Per Capita" />
+                             </rich:column>
+                        </rich:columnGroup>
+                      </f:facet>
+    	
+            	    <h:column >
+		                 <a4j:commandLink id="familiaLink" action="#{familiaAction.detail(familia.id)}">
+			                <h:outputText value="#{familia.id}"/>
+		                 </a4j:commandLink>
+		            </h:column>
+		            <h:column >
+		                 <h:outputText value="#{familia.rendaPercapta}"/>
+		            </h:column>
+		            <f:facet name="footer">
+						<rich:datascroller for="familiaList"
+								id="ds"
+								maxPages="30" pageIndexVar="pageIndex" pagesVar="pages"
+								rendered="true"
+								renderIfSinglePage="false">
+								<f:facet name="pages">
+									<s:div style="text-align: center;">
+									<h:outputText value="#{pageIndex}/#{pages} páginas"/>
+									</s:div>
+								</f:facet>
+						</rich:datascroller>
+					</f:facet>
+	        </rich:dataTable>
+		</rich:panel>
+    </h:form>
+
+     </ui:define>
+      
+</ui:composition>
