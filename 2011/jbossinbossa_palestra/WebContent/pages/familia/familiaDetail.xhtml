@@ -13,7 +13,7 @@
     
        		<rich:panel>
 		       <h:panelGrid columns="1" cellpadding="0px" cellspacing="0px">
-			       <p align="center" class="titulo" style="color:#228C96;">Familia</p>
+			       <p align="center" class="titulo" style="color:#228C96;"><h1>Familia</h1></p>
 			       
 			       <s:decorate template="/layout/display.xhtml">
 			       	   <ui:define name="label">
@@ -68,6 +68,16 @@
 			<h:panelGrid>
 				<h:commandButton value="Calcular Beneficio" action="#{familiaAction.calculaDesconto(familia.id)}" />
 			</h:panelGrid>
+		</rich:panel>
+		<rich:panel>
+		       <h:panelGrid columns="1" cellpadding="0px" cellspacing="0px">
+				 <s:decorate template="/layout/display.xhtml">       	
+		       	    <ui:define name="label">
+		       	   		<h:outputText value="Valor do Benefício:" />
+		       	    </ui:define>
+		       	    <h:outputText value="#{familiaAction.beneficio}" />
+		       	 </s:decorate>
+			   </h:panelGrid>
 		</rich:panel>
     </h:form>
 

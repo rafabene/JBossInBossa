@@ -29,8 +29,10 @@ import org.jbossinbossa.dominio.entidade.Pessoa;
 @Scope(ScopeType.CONVERSATION)
 public class FamiliaAction {
 	
-	@In
-	private WorkingMemory bolsaFamilia;
+	//@In
+	//private WorkingMemory bolsaFamilia;
+	
+	private static final String URL_CONNECTION="http://localhost:8080/guvnor-5.2.0.Final-jboss-as-5.1/org.drools.guvnor.Guvnor/package/bolsaFamilia/TEST";
 	
 	@In(create=true)
 	@Out(required=false)
@@ -39,7 +41,19 @@ public class FamiliaAction {
 	@In
 	private FamiliaDAO familiaDao;
 	
+	private double beneficio;
 	
+	
+	
+	
+	public double getBeneficio() {
+		return beneficio;
+	}
+
+	public void setBeneficio(double beneficio) {
+		this.beneficio = beneficio;
+	}
+
 	public List<Familia> findByAll() {
 		return familiaDao.findByAll();
 	}
@@ -62,12 +76,12 @@ public class FamiliaAction {
         
         ksession.insert(familia);
         ksession.fireAllRules();
-        System.out.println(beneficio.get(instanciaBeneficio, "valorBeneficio"));
+        setBeneficio((Double)beneficio.get(instanciaBeneficio, "valorBeneficio"));
 	}
 	
 	 private static KnowledgeBase readKnowledgeBase() throws Exception {
 	        KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-	        kbuilder.add(ResourceFactory.newUrlResource("http://localhost:8080/guvnor-5.2.0.Final-jboss-as-5.1/org.drools.guvnor.Guvnor/package/bolsaFamilia/TEST"), ResourceType.PKG);
+	        kbuilder.add(ResourceFactory.newUrlResource(URL_CONNECTION), ResourceType.PKG);
 	        KnowledgeBuilderErrors errors = kbuilder.getErrors();
 	        if (errors.size() > 0) {
 	            for (KnowledgeBuilderError error: errors) {
