@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
 
 import org.jboss.seam.annotations.Name;
 
@@ -27,6 +28,11 @@ public class Familia implements Serializable {
 	
 	@OneToMany(mappedBy = "familia", cascade=CascadeType.PERSIST)
 	private List<Pessoa> membros = new ArrayList<Pessoa>();
+	
+	
+	@Transient
+	private String beneficio;
+	
 	
 
 	public Long getId() {
@@ -53,8 +59,14 @@ public class Familia implements Serializable {
 		return rendaTotal / membros.size();
 	}
 	
-	
-	
+	public String getBeneficio() {
+		return beneficio;
+	}
+
+	public void setBeneficio(String beneficio) {
+		this.beneficio = beneficio;
+	}
+
 	@Override
 	public String toString() {
 		return "Família com " + getMembros().size() +  " membros e com renda percapta de " + getRendaPercapta();

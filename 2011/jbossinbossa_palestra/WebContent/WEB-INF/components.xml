@@ -35,6 +35,10 @@
    <drools:rule-base name="securityRules">
       <drools:rule-files><value>/security.drl</value></drools:rule-files>
    </drools:rule-base>
+   <drools:rule-agent configuration-file="agent.properties"
+  name="bolsaFamiliaAgent" scope="conversation"/>
+   <drools:managed-working-memory auto-create="true"
+  name="bolsaFamilia" rule-base="#{bolsaFamiliaAgent}" scope="event"/>
 
    <security:rule-based-permission-resolver security-rules="#{securityRules}"/>
 

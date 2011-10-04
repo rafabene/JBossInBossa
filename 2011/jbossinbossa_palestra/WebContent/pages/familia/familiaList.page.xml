@@ -6,7 +6,6 @@
    <begin-conversation join="true" flush-mode="manual"/>
    <navigation>
    		<rule if-outcome="detailFamiliaList">
-   			<begin-conversation nested="true"/>
    			<redirect view-id="/pages/familia/familiaDetail.xhtml"/>
    		</rule>
    

@@ -64,6 +64,11 @@
 		        </rich:dataTable>
 	        </h:panelGrid>
 		</rich:panel>
+		<rich:panel>
+			<h:panelGrid>
+				<h:commandButton value="Calcular Beneficio" action="#{familiaAction.calculaDesconto(familia.id)}" />
+			</h:panelGrid>
+		</rich:panel>
     </h:form>
 
      </ui:define>
