@@ -10,7 +10,11 @@ import org.drools.builder.KnowledgeBuilderError;
 import org.drools.builder.KnowledgeBuilderErrors;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
+import org.drools.definition.type.FactType;
 import org.drools.io.ResourceFactory;
+import org.drools.logger.KnowledgeRuntimeLogger;
+import org.drools.logger.KnowledgeRuntimeLoggerFactory;
+import org.drools.runtime.StatefulKnowledgeSession;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
@@ -18,6 +22,7 @@ import org.jboss.seam.annotations.Out;
 import org.jboss.seam.annotations.Scope;
 import org.jbossinbossa.dao.FamiliaDAO;
 import org.jbossinbossa.dominio.entidade.Familia;
+import org.jbossinbossa.dominio.entidade.Pessoa;
 
 
 @Name("familiaAction")
@@ -46,14 +51,18 @@ public class FamiliaAction {
 	
 	public void calculaDesconto(Long id) throws Exception {
 		this.familia = familiaDao.findById(id);
-		// KnowledgeBase kbase = readKnowledgeBase();
-		//FactType beneficio = kbase.getFactType("bolsaFamilia", "Beneficio");
-        //Object instanciaBeneficio = beneficio.newInstance();
-		//bolsaFamilia.setGlobal("$beneficio", instanciaBeneficio);
-		bolsaFamilia.insert(familia);
-		bolsaFamilia.fireAllRules();
-		System.out.print(familia.getBeneficio());
-		//System.out.print(beneficio.get(instanciaBeneficio, "valorBeneficio"));
+		// load up the knowledge base
+        KnowledgeBase kbase = readKnowledgeBase();
+        StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
+        KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newFileLogger(ksession, "test");
+        FactType beneficio = kbase.getFactType("bolsaFamilia", "Beneficio");
+        Object instanciaBeneficio = beneficio.newInstance();
+            
+        ksession.setGlobal("$beneficio", instanciaBeneficio);
+        
+        ksession.insert(familia);
+        ksession.fireAllRules();
+        System.out.println(beneficio.get(instanciaBeneficio, "valorBeneficio"));
 	}
 	
 	 private static KnowledgeBase readKnowledgeBase() throws Exception {
