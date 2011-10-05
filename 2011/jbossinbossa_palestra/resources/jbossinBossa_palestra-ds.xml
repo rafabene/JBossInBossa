@@ -4,7 +4,7 @@
    <local-tx-datasource>
       <jndi-name>jbossinBossa_palestraDatasource</jndi-name>
       <use-java-context>true</use-java-context>
-      <connection-url>jdbc:postgresql://localhost:5432/bolsaFamilia</connection-url>
+      <connection-url>jdbc:postgresql://localhost:5432/bolsafamilia</connection-url>
       <driver-class>org.postgresql.Driver</driver-class>
       <user-name>postgres</user-name>
       <password>postgres</password>
