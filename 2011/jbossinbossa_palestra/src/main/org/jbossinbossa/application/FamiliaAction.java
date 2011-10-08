@@ -2,10 +2,8 @@ package org.jbossinbossa.application;
 
 import java.util.List;
 
-import org.drools.WorkingMemory;
 import org.drools.definition.type.FactType;
 import org.drools.reteoo.ReteooStatefulSession;
-import org.drools.runtime.StatefulKnowledgeSession;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;

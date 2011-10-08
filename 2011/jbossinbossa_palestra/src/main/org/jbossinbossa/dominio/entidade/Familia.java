@@ -56,7 +56,7 @@ public class Familia implements Serializable {
 		for (Pessoa p : membros) {
 			rendaTotal += p.getRenda();
 		}
-		return rendaTotal / membros.size();
+		return rendaTotal ==0? 0 : rendaTotal / membros.size();
 	}
 	
 	public String getBeneficio() {
